@@ -687,64 +687,6 @@ if selected == 'Computer Vision':
 
             st.write("✅ Thank you for participating in the computer vision test.")
 
-
-
-# elif selected == 'Computer Vision':
-#     st.title("📸 Computer Vision Analysis")
-#     st.write("Instructions:")
-#     st.write("- The webcam will be shown live for 20 seconds.")
-#     st.write("- During that time, 10 images will be captured automatically (every 2 seconds).")
-
-#     img_dir = os.path.join(working_dir, 'captured_images')
-#     os.makedirs(img_dir, exist_ok=True)
-
-#     if st.button("Start Test"):
-#         st.info("📷 Webcam started... Please face the camera.")
-#         cap = cv2.VideoCapture(0)
-
-#         if not cap.isOpened():
-#             st.error("Webcam not detected.")
-#         else:
-#             start_time = time.time()
-#             last_capture = 0
-#             img_count = 0
-#             results = []
-#             stframe = st.empty()
-
-#             while time.time() - start_time < 20:
-#                 ret, frame = cap.read()
-#                 if not ret:
-#                     st.error("Webcam read error.")
-#                     break
-#                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-#                 stframe.image(frame_rgb, channels="RGB", caption="Live Feed", use_container_width=True)
-
-#                 if time.time() - last_capture >= 2 and img_count < 10:
-#                     img_count += 1
-#                     last_capture = time.time()
-#                     img_path = os.path.join(img_dir, f'image_{img_count}.jpg')
-#                     cv2.imwrite(img_path, frame)
-#                     conf = predict_computer_vision(frame)
-#                     results.append(conf)
-
-#             cap.release()
-#             avg_conf = np.mean(results)
-#             st.session_state.cr = avg_conf
-#             label = "Not Autistic" if avg_conf > 0.5 else "Autistic"
-#             st.success(f"Prediction: **{label}**")
-#             st.metric("Model Confidence", f"{avg_conf * 100:.2f}%")
-
-#             # Chart
-#             df = pd.DataFrame({
-#                 "Image": list(range(1, len(results)+1)),
-#                 "Non-Autistic Confidence": results
-#             })
-#             chart = alt.Chart(df).mark_line(point=True).encode(
-#                 x="Image",
-#                 y="Non-Autistic Confidence"
-#             ).properties(title="Confidence Over Captures")
-#             st.altair_chart(chart, use_container_width=True)
-
 # ----------------------------- Final Combined Result -----------------------------
 elif selected == 'Result':
     st.title("✅ Combined Result Summary")
